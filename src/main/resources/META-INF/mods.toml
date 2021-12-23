@@ -24,3 +24,10 @@ mandatory = true
 versionRange = "[1.18.1,1.19)"
 ordering = "NONE"
 side = "BOTH"
+
+[[dependencies.journeymapadditions]]
+modId = "journeymap"
+mandatory = true
+versionRange = "[5.7.1,)"
+ordering = "NONE"
+side = "CLIENT"

@@ -79,4 +79,15 @@ public class SlimeChunkOverlayHandler
         slimeChunkOverlays.put(chunkPos, overlay);
         jmAPI.show(overlay);
     }
+
+    public void remove(ChunkPos chunkPos) {
+        if (!slimeChunkOverlays.containsKey(chunkPos))
+        {
+            PolygonOverlay overlay = slimeChunkOverlays.remove(chunkPos);
+            if (overlay != null)
+            {
+                jmAPI.remove(overlay);
+            }
+        }
+    }
 }
