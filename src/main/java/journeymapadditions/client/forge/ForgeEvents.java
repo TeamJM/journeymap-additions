@@ -3,7 +3,7 @@ package journeymapadditions.client.forge;
 import journeymapadditions.JourneymapAdditions;
 import journeymapadditions.client.integration.SlimeChunkOverlayHandler;
 import journeymapadditions.network.dispatch.ClientNetworkDispatcher;
-import net.minecraft.world.level.ChunkPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 

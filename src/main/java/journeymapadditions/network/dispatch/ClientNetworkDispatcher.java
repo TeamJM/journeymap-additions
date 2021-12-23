@@ -3,7 +3,7 @@ package journeymapadditions.network.dispatch;
 import journeymapadditions.network.PacketRegistry;
 import journeymapadditions.network.packet.ChunkInfoPacket;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.level.ChunkPos;
+import net.minecraft.util.math.ChunkPos;
 
 public class ClientNetworkDispatcher
 {

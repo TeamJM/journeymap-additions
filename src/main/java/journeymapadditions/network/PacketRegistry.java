@@ -2,8 +2,9 @@ package journeymapadditions.network;
 
 import journeymapadditions.JourneymapAdditions;
 import journeymapadditions.network.packet.ChunkInfoPacket;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.network.simple.SimpleChannel;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.network.NetworkRegistry;
+import net.minecraftforge.fml.network.simple.SimpleChannel;
 
 public class PacketRegistry
 {
@@ -15,10 +16,10 @@ public class PacketRegistry
     {
         JourneymapAdditions.getLogger().debug("Registering internal Network handler.");
         INSTANCE = new PacketRegistry();
-        REGISTRY = net.minecraftforge.network.NetworkRegistry.ChannelBuilder
+        REGISTRY = NetworkRegistry.ChannelBuilder
                 .named(new ResourceLocation(JourneymapAdditions.MOD_ID, "common"))
-                .clientAcceptedVersions((c)-> true)
-                .serverAcceptedVersions((s)-> true)
+                .clientAcceptedVersions((c) -> true)
+                .serverAcceptedVersions((s) -> true)
                 .networkProtocolVersion(() -> MOD_VERSION)
                 .simpleChannel();
 

@@ -2,8 +2,8 @@ package journeymapadditions;
 
 import journeymapadditions.client.forge.ForgeEvents;
 import journeymapadditions.network.PacketRegistry;
-import net.minecraft.world.level.chunk.LevelChunk;
-import net.minecraft.world.level.levelgen.WorldgenRandom;
+import net.minecraft.util.SharedSeedRandom;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
@@ -58,11 +58,11 @@ public class JourneymapAdditions
      * @param chunk the chunk
      * @return true if it's a slime chunk
      */
-    public static boolean isSlimeChunk(LevelChunk chunk)
+    public static boolean isSlimeChunk(Chunk chunk)
     {
         if (!chunk.getLevel().isClientSide())
         {
-            return WorldgenRandom.seedSlimeChunk(chunk.getPos().x, chunk.getPos().z, chunk.getLevel().getServer().getWorldData().worldGenSettings().seed(), 987234911L).nextInt(10) == 0;
+            return SharedSeedRandom.seedSlimeChunk(chunk.getPos().x, chunk.getPos().z, chunk.getLevel().getServer().getWorldData().worldGenSettings().seed(), 987234911L).nextInt(10) == 0;
         }
         return false;
     }

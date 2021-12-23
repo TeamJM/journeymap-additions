@@ -8,9 +8,9 @@ import journeymap.client.api.model.TextProperties;
 import journeymap.client.api.util.PolygonHelper;
 import journeymapadditions.JourneymapAdditions;
 import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.Level;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.World;
 
 import java.util.HashMap;
 
@@ -42,7 +42,7 @@ public class SlimeChunkOverlayHandler
         String displayId = "slime_" + chunkCoords.toString();
         String groupName = "Slime Chunks";
         String label = String.format("Slime Chunk [%s,%s]", chunkCoords.x, chunkCoords.z);
-        ResourceKey<Level> dimension = Minecraft.getInstance().level.dimension();
+        RegistryKey<World> dimension = Minecraft.getInstance().level.dimension();
 
         // Style the polygon
         ShapeProperties shapeProps = new ShapeProperties()
@@ -80,7 +80,8 @@ public class SlimeChunkOverlayHandler
         jmAPI.show(overlay);
     }
 
-    public void remove(ChunkPos chunkPos) {
+    public void remove(ChunkPos chunkPos)
+    {
         if (!slimeChunkOverlays.containsKey(chunkPos))
         {
             PolygonOverlay overlay = slimeChunkOverlays.remove(chunkPos);

@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[39,)"
+loaderVersion = "[36,)"
 license = "MIT"
 #issueTrackerURL="http://my.issue.tracker/" #optional
 [[mods]]
@@ -14,14 +14,14 @@ Provides Fun Additions to Journeymap
 [[dependencies.journeymapadditions]]
 modId = "forge"
 mandatory = true
-versionRange = "[39,)"
+versionRange = "[36.2.20,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.journeymapadditions]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.18.1,1.19)"
+versionRange = "[1.16.5,)"
 ordering = "NONE"
 side = "BOTH"
 

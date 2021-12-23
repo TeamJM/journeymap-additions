@@ -3,9 +3,9 @@ package journeymapadditions.network.packet;
 import journeymapadditions.JourneymapAdditions;
 import journeymapadditions.client.ChunkInfoHandler;
 import journeymapadditions.network.dispatch.ServerNetworkDispatcher;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.level.ChunkPos;
-import net.minecraftforge.network.NetworkEvent;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
@@ -21,14 +21,14 @@ public class ChunkInfoPacket
         this.chunkPos = chunkPos;
     }
 
-    public ChunkInfoPacket(FriendlyByteBuf buf)
+    public ChunkInfoPacket(PacketBuffer buf)
     {
         try
         {
             if (buf.capacity() > 1)
             {
                 this.slimeChunk = buf.readBoolean();
-                this.chunkPos = buf.readChunkPos();
+                this.chunkPos = new ChunkPos(buf.readLong());
             }
         }
         catch (Throwable t)
@@ -37,12 +37,12 @@ public class ChunkInfoPacket
         }
     }
 
-    public void encode(FriendlyByteBuf buf)
+    public void encode(PacketBuffer buf)
     {
         try
         {
             buf.writeBoolean(this.slimeChunk);
-            buf.writeChunkPos(this.chunkPos);
+            buf.writeLong(chunkPos.toLong());
         }
         catch (Throwable t)
         {
