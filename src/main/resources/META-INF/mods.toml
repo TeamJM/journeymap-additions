@@ -5,7 +5,7 @@ license = "MIT"
 [[mods]]
 modId = "journeymapadditions"
 version = "${file.jarVersion}"
-displayName = "JourneymapAdditions"
+displayName = "Journeymap Additions"
 authors = "mysticdrew"
 
 description = '''
