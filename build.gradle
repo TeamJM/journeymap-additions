@@ -137,7 +137,7 @@ task processDocs(type: Copy) {
 
 curseforge {
     project {
-        id = '1' // project not setup yet
+        id = '559764' // project not setup yet
         apiKey = "${curseForgeApiKey}"
         changelogType = 'html'
         releaseType = curse_release_type
