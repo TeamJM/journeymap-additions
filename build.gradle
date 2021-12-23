@@ -146,7 +146,7 @@ curseforge {
             tool 'journeymap'
         }
 
-        mainArtifact() {
+        mainArtifact(jar) {
             displayName = "${archivesBaseName}-${version}"
             changelog = file('/build/doc/changelog.html')
         }
