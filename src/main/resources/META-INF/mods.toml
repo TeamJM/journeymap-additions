@@ -1,0 +1,26 @@
+modLoader = "javafml"
+loaderVersion = "[39,)"
+license = "MIT"
+#issueTrackerURL="http://my.issue.tracker/" #optional
+[[mods]]
+modId = "journeymapadditions"
+version = "${file.jarVersion}"
+displayName = "JourneymapAdditions"
+authors = "mysticdrew"
+
+description = '''
+Provides Fun Additions to Journeymap
+'''
+[[dependencies.journeymapadditions]]
+modId = "forge"
+mandatory = true
+versionRange = "[39,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.journeymapadditions]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.18.1,1.19)"
+ordering = "NONE"
+side = "BOTH"
