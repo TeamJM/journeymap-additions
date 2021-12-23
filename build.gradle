@@ -142,7 +142,7 @@ curseforge {
         releaseType = curse_release_type
         addGameVersion project.minecraft_version
         relations {
-            tool 'journeymap'
+            requiredDependency 'journeymap'
         }
 
         mainArtifact(jar) {
