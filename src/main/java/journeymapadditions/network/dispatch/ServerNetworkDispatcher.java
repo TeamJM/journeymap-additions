@@ -7,7 +7,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.chunk.LevelChunk;
 
-import static net.minecraftforge.network.NetworkDirection.PLAY_TO_CLIENT;
+import static net.minecraftforge.fmllegacy.network.NetworkDirection.PLAY_TO_CLIENT;
 
 public class ServerNetworkDispatcher
 {

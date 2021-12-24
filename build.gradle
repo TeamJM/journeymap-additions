@@ -23,7 +23,7 @@ group = project.group_id
 archivesBaseName = project.mod_id
 version = "${project.minecraft_version}-${project.mod_version}"
 java {
-    toolchain.languageVersion = JavaLanguageVersion.of(17)
+    toolchain.languageVersion = JavaLanguageVersion.of(16)
 }
 
 minecraft {

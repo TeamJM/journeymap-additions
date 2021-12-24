@@ -5,7 +5,7 @@ import journeymapadditions.client.ChunkInfoHandler;
 import journeymapadditions.network.dispatch.ServerNetworkDispatcher;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
