@@ -22,7 +22,6 @@ apply plugin: 'com.matthewprenger.cursegradle'
 group = project.group_id
 archivesBaseName = project.mod_id
 version = "${project.minecraft_version}-${project.mod_version}"
-
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
@@ -105,7 +104,7 @@ jar {
                 "Specification-Vendor"    : project.group_id,
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
-                "Implementation-Version"  : "${archiveVersion}",
+                "Implementation-Version"  : "${version}",
                 "Implementation-Vendor"   : project.group_id,
                 "Implementation-URL"      : "http://journeymap.info",
                 "Implementation-Timestamp": getDate()
@@ -143,7 +142,7 @@ curseforge {
         releaseType = curse_release_type
         addGameVersion project.minecraft_version
         relations {
-            tool 'journeymap'
+            requiredDependency 'journeymap'
         }
 
         mainArtifact(jar) {
