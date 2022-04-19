@@ -1,17 +1,22 @@
 package journeymapadditions.client.integration;
 
 import journeymap.client.api.IClientAPI;
+import journeymap.client.api.display.IOverlayListener;
+import journeymap.client.api.display.ModPopupMenu;
 import journeymap.client.api.display.PolygonOverlay;
 import journeymap.client.api.model.MapPolygon;
 import journeymap.client.api.model.ShapeProperties;
 import journeymap.client.api.model.TextProperties;
 import journeymap.client.api.util.PolygonHelper;
+import journeymap.client.api.util.UIState;
 import journeymapadditions.JourneymapAdditions;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 
+import java.awt.geom.Point2D;
 import java.util.HashMap;
 
 public class SlimeChunkOverlayHandler
@@ -70,6 +75,50 @@ public class SlimeChunkOverlayHandler
                 .setLabel(label)
                 .setTextProperties(textProps);
 
+        slimeChunkOverlay.setOverlayListener(new IOverlayListener()
+        {
+            @Override
+            public void onActivate(UIState uiState)
+            {
+
+            }
+
+            @Override
+            public void onDeactivate(UIState uiState)
+            {
+
+            }
+
+            @Override
+            public void onMouseMove(UIState uiState, Point2D.Double aDouble, BlockPos blockPos)
+            {
+
+            }
+
+            @Override
+            public void onMouseOut(UIState uiState, Point2D.Double aDouble, BlockPos blockPos)
+            {
+
+            }
+
+            @Override
+            public boolean onMouseClick(UIState uiState, Point2D.Double aDouble, BlockPos blockPos, int i, boolean b)
+            {
+                return false;
+            }
+
+            @Override
+            public void onOverlayMenuPopup(UIState uiState, Point2D.Double aDouble, BlockPos blockPos, ModPopupMenu modPopupMenu)
+            {
+                modPopupMenu.addMenuItem("remove", (b) -> {
+                    // set it to null so the overlay listener is also destroyed.
+                    slimeChunkOverlay.setOverlayListener(null);
+                    jmAPI.remove(slimeChunkOverlay);
+                });
+
+            }
+        });
+
         return slimeChunkOverlay;
     }
 
@@ -78,6 +127,10 @@ public class SlimeChunkOverlayHandler
         PolygonOverlay overlay = this.create(chunkPos);
         slimeChunkOverlays.put(chunkPos, overlay);
         jmAPI.show(overlay);
+    }
+
+    public void disable() {
+        slimeChunkOverlays.forEach((pos, overlay)-> jmAPI.remove(overlay));
     }
 
     public void remove(ChunkPos chunkPos) {

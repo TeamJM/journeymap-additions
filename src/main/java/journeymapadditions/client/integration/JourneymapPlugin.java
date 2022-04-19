@@ -6,6 +6,13 @@ import journeymap.client.api.IClientPlugin;
 import journeymap.client.api.event.ClientEvent;
 import journeymapadditions.JourneymapAdditions;
 
+import java.util.EnumSet;
+
+import static journeymap.client.api.event.ClientEvent.Type.DEATH_WAYPOINT;
+import static journeymap.client.api.event.ClientEvent.Type.MAPPING_STARTED;
+import static journeymap.client.api.event.ClientEvent.Type.MAPPING_STOPPED;
+import static journeymap.client.api.event.ClientEvent.Type.REGISTRY;
+
 @ClientPlugin
 public class JourneymapPlugin implements IClientPlugin
 {
@@ -15,6 +22,7 @@ public class JourneymapPlugin implements IClientPlugin
     public void initialize(IClientAPI jmApi)
     {
         this.jmApi = jmApi;
+        this.jmApi.subscribe(getModId(), EnumSet.of(MAPPING_STOPPED, REGISTRY));
         SlimeChunkOverlayHandler.init(jmApi);
     }
 
@@ -34,7 +42,10 @@ public class JourneymapPlugin implements IClientPlugin
                 case MAPPING_STOPPED:
                     this.jmApi.removeAll(JourneymapAdditions.MOD_ID);
                     break;
-
+                case REGISTRY:
+                    JourneymapAdditions.getLogger().info("Initializing client configs");
+                    JourneymapAdditions.getInstance().setClientProperties(new ClientProperties());
+                    break;
             }
         }
         catch (Throwable t)
