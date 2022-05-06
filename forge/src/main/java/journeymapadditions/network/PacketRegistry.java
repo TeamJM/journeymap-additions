@@ -17,8 +17,8 @@ public class PacketRegistry
         INSTANCE = new PacketRegistry();
         REGISTRY = net.minecraftforge.network.NetworkRegistry.ChannelBuilder
                 .named(new ResourceLocation(JourneymapAdditions.MOD_ID, "common"))
-                .clientAcceptedVersions((c)-> true)
-                .serverAcceptedVersions((s)-> true)
+                .clientAcceptedVersions((c) -> true)
+                .serverAcceptedVersions((s) -> true)
                 .networkProtocolVersion(() -> MOD_VERSION)
                 .simpleChannel();
 

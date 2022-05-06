@@ -1,7 +1,7 @@
 package journeymapadditions;
 
-import journeymapadditions.client.forge.ForgeEvents;
-import journeymapadditions.client.integration.ClientProperties;
+import journeymapadditions.events.ForgeEvents;
+import journeymapadditions.integration.ClientProperties;
 import journeymapadditions.network.PacketRegistry;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
@@ -21,6 +21,7 @@ public class JourneymapAdditions
     public static final String MOD_ID = "journeymapadditions";
     private static JourneymapAdditions instance;
     private ClientProperties clientProperties;
+
     public JourneymapAdditions()
     {
         instance = this;
@@ -31,7 +32,8 @@ public class JourneymapAdditions
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetupEvent);
     }
 
-    public static JourneymapAdditions getInstance() {
+    public static JourneymapAdditions getInstance()
+    {
         return instance;
     }
 

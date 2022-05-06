@@ -1,7 +1,7 @@
 package journeymapadditions.network.packet;
 
+import journeymapadditions.ChunkInfoHandler;
 import journeymapadditions.JourneymapAdditions;
-import journeymapadditions.client.ChunkInfoHandler;
 import journeymapadditions.network.dispatch.ServerNetworkDispatcher;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.level.ChunkPos;

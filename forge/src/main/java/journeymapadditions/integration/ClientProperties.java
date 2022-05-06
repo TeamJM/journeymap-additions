@@ -1,4 +1,4 @@
-package journeymapadditions.client.integration;
+package journeymapadditions.integration;
 
 import journeymap.client.api.option.BooleanOption;
 import journeymap.client.api.option.CustomIntegerOption;

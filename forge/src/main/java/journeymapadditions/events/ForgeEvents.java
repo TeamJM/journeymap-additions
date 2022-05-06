@@ -1,11 +1,11 @@
-package journeymapadditions.client.forge;
+package journeymapadditions.events;
 
 import journeymap.client.api.display.IThemeButton;
 import journeymap.client.api.event.forge.FullscreenDisplayEvent;
 import journeymap.client.api.event.forge.PopupMenuEvent;
 import journeymapadditions.JourneymapAdditions;
-import journeymapadditions.client.integration.ClientProperties;
-import journeymapadditions.client.integration.SlimeChunkOverlayHandler;
+import journeymapadditions.integration.ClientProperties;
+import journeymapadditions.integration.SlimeChunkOverlayHandler;
 import journeymapadditions.network.dispatch.ClientNetworkDispatcher;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.ChunkPos;

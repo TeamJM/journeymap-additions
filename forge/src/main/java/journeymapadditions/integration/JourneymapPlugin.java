@@ -1,4 +1,4 @@
-package journeymapadditions.client.integration;
+package journeymapadditions.integration;
 
 import journeymap.client.api.ClientPlugin;
 import journeymap.client.api.IClientAPI;
@@ -8,8 +8,6 @@ import journeymapadditions.JourneymapAdditions;
 
 import java.util.EnumSet;
 
-import static journeymap.client.api.event.ClientEvent.Type.DEATH_WAYPOINT;
-import static journeymap.client.api.event.ClientEvent.Type.MAPPING_STARTED;
 import static journeymap.client.api.event.ClientEvent.Type.MAPPING_STOPPED;
 import static journeymap.client.api.event.ClientEvent.Type.REGISTRY;
 

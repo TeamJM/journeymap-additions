@@ -1,7 +1,6 @@
-package journeymapadditions.client;
+package journeymapadditions;
 
-import journeymapadditions.JourneymapAdditions;
-import journeymapadditions.client.integration.SlimeChunkOverlayHandler;
+import journeymapadditions.integration.SlimeChunkOverlayHandler;
 import journeymapadditions.network.dispatch.ClientNetworkDispatcher;
 import journeymapadditions.network.packet.ChunkInfoPacket;
 import net.minecraft.world.level.ChunkPos;
@@ -15,10 +14,12 @@ public class ChunkInfoHandler
 
     public static void chunkLoad(ChunkPos chunkPos)
     {
-        if(chunkInfoCache.get(chunkPos) == null) {
+        if (chunkInfoCache.get(chunkPos) == null)
+        {
             ClientNetworkDispatcher.sendChunkInfoRequest(chunkPos);
         }
     }
+
     public static void handle(ChunkInfoPacket packet)
     {
         try

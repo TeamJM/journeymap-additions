@@ -1,4 +1,4 @@
-package journeymapadditions.client.integration;
+package journeymapadditions.integration;
 
 import journeymap.client.api.IClientAPI;
 import journeymap.client.api.display.IOverlayListener;
@@ -129,11 +129,13 @@ public class SlimeChunkOverlayHandler
         jmAPI.show(overlay);
     }
 
-    public void disable() {
-        slimeChunkOverlays.forEach((pos, overlay)-> jmAPI.remove(overlay));
+    public void disable()
+    {
+        slimeChunkOverlays.forEach((pos, overlay) -> jmAPI.remove(overlay));
     }
 
-    public void remove(ChunkPos chunkPos) {
+    public void remove(ChunkPos chunkPos)
+    {
         if (!slimeChunkOverlays.containsKey(chunkPos))
         {
             PolygonOverlay overlay = slimeChunkOverlays.remove(chunkPos);
