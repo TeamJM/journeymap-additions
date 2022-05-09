@@ -1,7 +1,7 @@
 package journeymapadditions.network.dispatch;
 
-import journeymapadditions.network.PacketRegistry;
-import journeymapadditions.network.packet.ChunkInfoPacket;
+import journeymapadditions.JourneymapAdditions;
+import journeymapadditions.network.packets.ChunkInfoPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.ChunkPos;
 
@@ -12,7 +12,7 @@ public class ClientNetworkDispatcher
         // might be null if player is not fully logged in.
         if (Minecraft.getInstance().getConnection() != null)
         {
-            PacketRegistry.REGISTRY.sendToServer(new ChunkInfoPacket(true, chunkPos));
+            JourneymapAdditions.getInstance().getNetworkHandler().sendToServer(new ChunkInfoPacket(true, chunkPos));
         }
     }
 }

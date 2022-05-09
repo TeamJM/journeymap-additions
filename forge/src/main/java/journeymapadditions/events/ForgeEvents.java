@@ -1,19 +1,21 @@
 package journeymapadditions.events;
 
-import journeymap.client.api.display.IThemeButton;
 import journeymap.client.api.event.forge.FullscreenDisplayEvent;
 import journeymap.client.api.event.forge.PopupMenuEvent;
 import journeymapadditions.JourneymapAdditions;
-import journeymapadditions.integration.ClientProperties;
-import journeymapadditions.integration.SlimeChunkOverlayHandler;
-import journeymapadditions.network.dispatch.ClientNetworkDispatcher;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class ForgeEvents
 {
+    private final EventHandler handler;
+
+    public ForgeEvents()
+    {
+        this.handler = new EventHandler();
+    }
+
     /**
      * Listen for Forge chunk load, show polygon overlay if it is a slime chunk.
      */
@@ -25,7 +27,7 @@ public class ForgeEvents
             if (event.getWorld() != null)
             {
                 ChunkPos chunkPos = event.getChunk().getPos();
-                ClientNetworkDispatcher.sendChunkInfoRequest(chunkPos);
+                handler.onChunkLoadEvent(chunkPos);
             }
         }
         catch (Throwable t)
@@ -41,8 +43,7 @@ public class ForgeEvents
         {
             if (!event.isCanceled())
             {
-                event.getPopupMenu().createSubItemList("Slime Chunks")
-                        .addMenuItem("Slime IT", b -> SlimeChunkOverlayHandler.getInstance().disable());
+                handler.onPopupEvent(event.getPopupMenu());
             }
         }
         catch (Throwable t)
@@ -54,25 +55,7 @@ public class ForgeEvents
     @SubscribeEvent
     public void onItemDisplayEvent(FullscreenDisplayEvent.AddonButtonDisplayEvent event)
     {
-        ClientProperties properties = JourneymapAdditions.getInstance().getClientProperties();
-        try
-        {
-
-            IThemeButton button = event.getThemeButtonDisplay()
-                    .addThemeToggleButton(new TranslatableComponent("jm.additions.slime.button.on").getString(),
-                            new TranslatableComponent("jm.additions.slime.button.off").getString(),
-                            "slime",
-                            properties.slimeChunksEnabled.get(),
-                            b -> {
-                                b.toggle();
-                                properties.slimeChunksEnabled.set(b.getToggled());
-                            });
-
-        }
-        catch (Throwable t)
-        {
-            JourneymapAdditions.getLogger().error(t.getMessage(), t);
-        }
+        handler.onItemDisplayEvent(event.getThemeButtonDisplay());
     }
 
     /**
@@ -81,6 +64,6 @@ public class ForgeEvents
     @SubscribeEvent
     public void onChunkUnloadEvent(ChunkEvent.Unload event)
     {
-        SlimeChunkOverlayHandler.getInstance().remove(event.getChunk().getPos());
+        handler.onChunkUnloadEvent(event.getChunk().getPos());
     }
 }

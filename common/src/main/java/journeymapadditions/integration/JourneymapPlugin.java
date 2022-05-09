@@ -37,13 +37,11 @@ public class JourneymapPlugin implements IClientPlugin
         {
             switch (clientEvent.type)
             {
-                case MAPPING_STOPPED:
-                    this.jmApi.removeAll(JourneymapAdditions.MOD_ID);
-                    break;
-                case REGISTRY:
+                case MAPPING_STOPPED -> this.jmApi.removeAll(JourneymapAdditions.MOD_ID);
+                case REGISTRY -> {
                     JourneymapAdditions.getLogger().info("Initializing client configs");
                     JourneymapAdditions.getInstance().setClientProperties(new ClientProperties());
-                    break;
+                }
             }
         }
         catch (Throwable t)

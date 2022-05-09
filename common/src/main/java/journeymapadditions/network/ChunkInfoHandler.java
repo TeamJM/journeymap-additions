@@ -1,8 +1,9 @@
-package journeymapadditions;
+package journeymapadditions.network;
 
+import journeymapadditions.JourneymapAdditions;
 import journeymapadditions.integration.SlimeChunkOverlayHandler;
 import journeymapadditions.network.dispatch.ClientNetworkDispatcher;
-import journeymapadditions.network.packet.ChunkInfoPacket;
+import journeymapadditions.network.packets.ChunkInfoPacket;
 import net.minecraft.world.level.ChunkPos;
 
 import java.util.HashMap;

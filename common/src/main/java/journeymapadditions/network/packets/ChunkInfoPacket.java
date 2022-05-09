@@ -1,19 +1,26 @@
-package journeymapadditions.network.packet;
+package journeymapadditions.network.packets;
 
-import journeymapadditions.ChunkInfoHandler;
 import journeymapadditions.JourneymapAdditions;
+import journeymapadditions.network.ChunkInfoHandler;
+import journeymapadditions.network.data.PacketContext;
+import journeymapadditions.network.data.Side;
 import journeymapadditions.network.dispatch.ServerNetworkDispatcher;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraftforge.network.NetworkEvent;
 
-import java.util.function.Supplier;
+import static journeymapadditions.JourneymapAdditions.MOD_ID;
 
 public class ChunkInfoPacket
 {
-
+    public static final ResourceLocation CHANNEL = new ResourceLocation(MOD_ID, "chunk_info");
     private ChunkPos chunkPos;
     private Boolean slimeChunk;
+
+
+    public ChunkInfoPacket()
+    {
+    }
 
     public ChunkInfoPacket(Boolean slimeChunk, ChunkPos chunkPos)
     {
@@ -21,20 +28,22 @@ public class ChunkInfoPacket
         this.chunkPos = chunkPos;
     }
 
-    public ChunkInfoPacket(FriendlyByteBuf buf)
+    public static ChunkInfoPacket decode(FriendlyByteBuf buf)
     {
+        ChunkInfoPacket packet = new ChunkInfoPacket();
         try
         {
             if (buf.capacity() > 1)
             {
-                this.slimeChunk = buf.readBoolean();
-                this.chunkPos = buf.readChunkPos();
+                packet.slimeChunk = buf.readBoolean();
+                packet.chunkPos = buf.readChunkPos();
             }
         }
         catch (Throwable t)
         {
             JourneymapAdditions.getLogger().error(String.format("Failed to read message for teleport packet: %s", t));
         }
+        return packet;
     }
 
     public void encode(FriendlyByteBuf buf)
@@ -60,18 +69,16 @@ public class ChunkInfoPacket
         return slimeChunk;
     }
 
-    public static void handle(ChunkInfoPacket packet, Supplier<NetworkEvent.Context> ctx)
+    //
+    public static void handle(PacketContext<ChunkInfoPacket> ctx)
     {
-        ctx.get().enqueueWork(() -> {
-            if (ctx.get().getDirection().getReceptionSide().isServer())
-            {
-                ServerNetworkDispatcher.sendChunkInfoPacket(ctx.get().getSender(), packet.chunkPos);
-            }
-            else
-            {
-                ChunkInfoHandler.handle(packet);
-            }
-        });
-        ctx.get().setPacketHandled(true);
+        if (Side.SERVER.equals(ctx.side()))
+        {
+            ServerNetworkDispatcher.sendChunkInfoPacket(ctx.sender(), ctx.message().getChunkPos());
+        }
+        else
+        {
+            ChunkInfoHandler.handle(ctx.message());
+        }
     }
 }
