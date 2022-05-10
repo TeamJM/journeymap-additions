@@ -10,18 +10,16 @@ import org.apache.logging.log4j.Logger;
 public class JourneymapAdditions
 {
     public static final String MOD_ID = "journeymapadditions";
-    private final NetworkHandler networkHandler;
+    private NetworkHandler networkHandler;
     private ClientProperties clientProperties;
     private static JourneymapAdditions instance;
 
-    public JourneymapAdditions(NetworkHandler networkHandler)
-    {
-        instance = this;
-        this.networkHandler = networkHandler;
-    }
-
     public static JourneymapAdditions getInstance()
     {
+        if (instance == null)
+        {
+            instance = new JourneymapAdditions();
+        }
         return instance;
     }
 
@@ -30,10 +28,16 @@ public class JourneymapAdditions
         return networkHandler;
     }
 
+    public void setNetworkHandler(NetworkHandler networkHandler)
+    {
+        this.networkHandler = networkHandler;
+    }
+
     public ClientProperties getClientProperties()
     {
         return clientProperties;
     }
+
     /**
      * Get the common logger.
      *

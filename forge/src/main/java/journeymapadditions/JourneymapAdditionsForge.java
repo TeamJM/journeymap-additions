@@ -31,7 +31,7 @@ public class JourneymapAdditionsForge
     {
         event.enqueueWork(() -> {
             JourneymapAdditions.getLogger().info("Initializing Packet Registries");
-            new JourneymapAdditions(new ForgeNetworkHandler());
+            JourneymapAdditions.getInstance().setNetworkHandler(new ForgeNetworkHandler());
         });
     }
 

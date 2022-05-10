@@ -9,12 +9,20 @@ group = project.group_id
 archivesBaseName = project.mod_id
 version = "${project.minecraft_version}-${project.mod_version}"
 
+configurations.all {
+    // Check for snapshots more frequently than Gradle's default of 1 day. 0 = every build.
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.officialMojangMappings()
+
+    modApi group: 'info.journeymap', name: 'journeymap-api', version: project.journeymap_api_fabric_version, changing: true
+    modRuntimeOnly "curse.maven:journeymap-${project.jm_project_id}:${project.jm_fabric_file_id}"
+
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
-    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     implementation project(":common")
 }
 

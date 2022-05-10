@@ -25,7 +25,7 @@ minecraft {
 
 dependencies {
     compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
-    compileOnly group: 'info.journeymap', name: 'journeymap-api', version: project.journeymap_api_forge_version, changing: true
+    compileOnly group: 'info.journeymap', name: 'journeymap-api', version: project.journeymap_api_common_version, changing: true
 }
 
 task processDocs(type: Copy) {

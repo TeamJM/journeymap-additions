@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "journeymapadditions",
+  "version": "${version}",
+
+  "name": "Journeymap Additions",
+  "description": "Provides Fun Additions to Journeymap",
+  "authors": [
+    "Mysticdrew"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "MIT",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "journeymapadditions.JourneymapAdditionsFabric"
+    ],
+    "journeymap": [
+      "journeymapadditions.integration.JourneymapPlugin"
+    ]
+  },
+
+  "depends": {
+    "fabricloader": ">=0.13",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  }
+}

@@ -1,10 +1,7 @@
 package journeymapadditions.events;
 
-import journeymap.client.api.display.IThemeButton;
 import journeymap.client.api.display.ModPopupMenu;
 import journeymap.client.api.display.ThemeButtonDisplay;
-import journeymap.client.api.event.forge.FullscreenDisplayEvent;
-import journeymap.client.api.event.forge.PopupMenuEvent;
 import journeymapadditions.JourneymapAdditions;
 import journeymapadditions.integration.ClientProperties;
 import journeymapadditions.integration.SlimeChunkOverlayHandler;
